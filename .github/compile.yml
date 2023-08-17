@@ -1,1 +1,23 @@
+name: Compile and Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Install libcurl
+      run: sudo apt-get install libcurl4-openssl-dev
+
+    - name: Compile and run
+      run: |
+        cc stock.c -o stock -lcurl
+        ./stock
 
