@@ -1,1 +1,22 @@
+name: Build and Test C Program
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up libcurl
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libcurl4-openssl-dev
+
+    - name: Build and Run
+      run: |
+        gcc -o my_program my_program.c -lcurl
+        ./my_program
 
